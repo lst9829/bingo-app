@@ -26,9 +26,13 @@ function App() {
     if(value === 'all') {
       setAvailableNumbers([...bNumbers, ...iNumbers, ...nNumbers, ...gNumbers, ...oNumbers])
       setGamePlayed("all")
+      setUsedNumbers([])
+      setSelectedNumber()
     } else {
       setAvailableNumbers([...gNumbers, ...oNumbers])
       setGamePlayed("some")
+      setUsedNumbers([])
+      setSelectedNumber()
     }
   }
 
