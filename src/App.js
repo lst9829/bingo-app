@@ -111,7 +111,7 @@ function App() {
           ))}
         </Box>
         <Box gap={2} display='flex' justifyContent='center'>
-          <Button color='secondary' variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
+          <Button color='secondary' disabled={availableNumbers.length === 0 ? true : false} variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
           <Button color='secondary' variant='contained' onClick={() => handleGameOver()}>Game Over</Button>
         </Box>
       </Box> : isPlaying === true && gamePlayed === 'some' ?
