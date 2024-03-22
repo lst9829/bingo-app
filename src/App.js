@@ -20,17 +20,31 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [gamePlayed, setGamePlayed] = useState("")
   const [usedNumbers, setUsedNumbers] = useState([])
+  const [image, setImage] = useState("")
+  const [image2, setImage2] = useState("")
 
   const handleIsPlaying = (value) => {
     setIsPlaying(true)
-    if(value === 'all') {
+    console.log(value)
+    if(value !== 'postage') {
       setAvailableNumbers([...bNumbers, ...iNumbers, ...nNumbers, ...gNumbers, ...oNumbers])
-      setGamePlayed("all")
+      setGamePlayed(value)
       setUsedNumbers([])
       setSelectedNumber()
+      if (value === 'all') {
+        setImage('https://cdn11.bigcommerce.com/s-ykblmppim4/images/stencil/1280x1280/products/248/674/apilfjeow__58971.1641219352.png?c=1')
+      } else if (value === 'bingo') {
+        setImage('https://cdn11.bigcommerce.com/s-ykblmppim4/images/stencil/1280x1280/products/331/788/apifdh6kd__85165.1641219357.png?c=1')
+        setImage2('https://cdn11.bigcommerce.com/s-ykblmppim4/images/stencil/1280x1280/products/249/425/api6cb5px__30507.1641219353.png?c=1')
+      } else if (value === 'madam') {
+        setImage('https://cdn11.bigcommerce.com/s-ykblmppim4/images/stencil/1280x1280/products/529/438/apiehslmh__74313.1641219364.png?c=1')
+      } else if (value === 'letterL') {
+        setImage('https://cdn11.bigcommerce.com/s-ykblmppim4/images/stencil/1280x1280/products/446/804/apifiec4w__54253.1641219363.png?c=1')
+      }
     } else {
       setAvailableNumbers([...gNumbers, ...oNumbers])
-      setGamePlayed("some")
+      setGamePlayed("postage")
+      setImage("https://cdn11.bigcommerce.com/s-ykblmppim4/images/stencil/1280w/products/207/794/BGPostageStamp-2__67236.1597518423.png?c=1' alt='bingo success example")
       setUsedNumbers([])
       setSelectedNumber()
     }
@@ -42,6 +56,7 @@ function App() {
     setSelectedNumber()
     setGamePlayed("")
     setIsPlaying(false)
+    setImage("")
   }
 
   const handleSelectANumber = () => {
@@ -53,26 +68,24 @@ function App() {
     setAvailableNumbers(prevNumbers => prevNumbers.filter(number => number !== randomNumber))
   }
 
-  console.log(selectedNumber)
-  console.log(usedNumbers)
-  console.log(availableNumbers)
-
   return (
     <div className="App">
       <Typography variant='h3' textAlign='center'>
         Loy Elementary Bingo Web Application
       </Typography>
       <Box display="flex" justifyContent="center" gap={2} sx={{ marginBottom: '15px', marginTop: '14px'}}>
-        <Button color='secondary' variant='contained' value='all' onClick={(event) => handleIsPlaying(event.target.value)}>Regular Bingo</Button>
-        <Button color='secondary' variant='contained' value='all' onClick={(event) => handleIsPlaying(event.target.value)}>Cover All</Button>
-        <Button color='secondary' variant='contained' value='all' onClick={(event) => handleIsPlaying(event.target.value)}>Madame X</Button>
-        <Button color='secondary' variant='contained' value='some' onClick={(event) => handleIsPlaying(event.target.value)}>Postage Stamp</Button>
-        <Button color='secondary' variant='contained' value='all' onClick={(event) => handleIsPlaying(event.target.value)}>Letter L</Button>
+        <Button color='secondary' variant='contained' value='bingo' onClick={(event) => handleIsPlaying(event.target.value)}>Regular Bingo</Button>
+        <Button color='secondary' variant='contained' value='all' onClick={(event) => handleIsPlaying(event.target.value)}>Coverall</Button>
+        <Button color='secondary' variant='contained' value='madam' onClick={(event) => handleIsPlaying(event.target.value)}>Madam X</Button>
+        <Button color='secondary' variant='contained' value='postage' onClick={(event) => handleIsPlaying(event.target.value)}>Postage Stamp</Button>
+        <Button color='secondary' variant='contained' value='letterL' onClick={(event) => handleIsPlaying(event.target.value)}>Letter L</Button>
       </Box>
-      {isPlaying === true && gamePlayed === "all" ?
+      {isPlaying === true && gamePlayed !== "postage" ?
       <Box>
-        <Box display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
+        <Box gap={2} display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
+          <img height='237vw' width='237vw' src={image} alt='bingo success example' />
           <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw'}}>{selectedNumber}</Card>
+          <img height='237vw' width='237vw' src={gamePlayed === 'bingo' ? image2 : image} alt='bingo success example' />
         </Box>
         <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
           <Typography fontSize='2vw' fontWeight='bold'>B</Typography>
@@ -118,10 +131,12 @@ function App() {
           <Button color='secondary' disabled={availableNumbers.length === 0 ? true : false} variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
           <Button color='secondary' variant='contained' onClick={() => handleGameOver()}>Game Over</Button>
         </Box>
-      </Box> : isPlaying === true && gamePlayed === 'some' ?
+      </Box> : isPlaying === true && gamePlayed === 'postage' ?
       <Box>
-        <Box display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
+        <Box gap={2} display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
+          <img height='237vw' width='237vw' src={image} alt='bingo success example' />
           <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw'}}>{selectedNumber}</Card>
+          <img height='237vw' width='237vw' src={image} alt='bingo success example' />
         </Box>
         <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
           <Typography fontSize='2vw' fontWeight='bold'>G</Typography>
