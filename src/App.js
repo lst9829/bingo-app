@@ -90,7 +90,7 @@ function App() {
         <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
           <Typography fontSize='2vw' fontWeight='bold'>B</Typography>
           {bNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
+            <Card sx={{ minHeight: '2vw', minWidth: '2.2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
               {number}
             </Card>
           ))}
