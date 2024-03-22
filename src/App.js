@@ -87,6 +87,7 @@ function App() {
             <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw' }}>{selectedNumber < 16 ? 'B ' + selectedNumber : selectedNumber >= 16 && selectedNumber < 31 ? 'I ' + selectedNumber : selectedNumber >= 31 && selectedNumber < 46 ? 'N ' + selectedNumber : selectedNumber >= 46 && selectedNumber < 61 ? 'G ' + selectedNumber : selectedNumber >= 61 ? 'O ' + selectedNumber : selectedNumber}</Card>
             <img height='237vw' width='237vw' src={gamePlayed === 'bingo' ? image2 : image} alt='bingo success example' />
           </Box>
+          <br></br>
           <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
             <Typography fontSize='2vw' fontWeight='bold'>B</Typography>
             {bNumbers.map(number => (
