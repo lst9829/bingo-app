@@ -10,11 +10,11 @@ import { Box } from '@mui/material'
 import { Grid } from '@mui/material'
 
 function App() {
-  const bNumbers = Array.from({length: 15}, (_, i) => i + 1)
-  const iNumbers = Array.from({length: 15}, (_, i) => 16 + i)
-  const nNumbers = Array.from({length: 15}, (_, i) => 31 + i)
-  const gNumbers = Array.from({length: 15}, (_, i) => 46 + i)
-  const oNumbers = Array.from({length: 15}, (_, i) => 61 + i)
+  const bNumbers = Array.from({ length: 15 }, (_, i) => i + 1)
+  const iNumbers = Array.from({ length: 15 }, (_, i) => 16 + i)
+  const nNumbers = Array.from({ length: 15 }, (_, i) => 31 + i)
+  const gNumbers = Array.from({ length: 15 }, (_, i) => 46 + i)
+  const oNumbers = Array.from({ length: 15 }, (_, i) => 61 + i)
   const [availableNumbers, setAvailableNumbers] = useState([])
   const [selectedNumber, setSelectedNumber] = useState()
   const [isPlaying, setIsPlaying] = useState(false)
@@ -26,7 +26,7 @@ function App() {
   const handleIsPlaying = (value) => {
     setIsPlaying(true)
     console.log(value)
-    if(value !== 'postage') {
+    if (value !== 'postage') {
       setAvailableNumbers([...bNumbers, ...iNumbers, ...nNumbers, ...gNumbers, ...oNumbers])
       setGamePlayed(value)
       setUsedNumbers([])
@@ -73,7 +73,7 @@ function App() {
       <Typography variant='h3' textAlign='center'>
         Loy Elementary Bingo Web Application
       </Typography>
-      <Box display="flex" justifyContent="center" gap={2} sx={{ marginBottom: '15px', marginTop: '14px'}}>
+      <Box display="flex" justifyContent="center" gap={2} sx={{ marginBottom: '15px', marginTop: '14px' }}>
         <Button color='secondary' variant='contained' value='bingo' onClick={(event) => handleIsPlaying(event.target.value)}>Regular Bingo</Button>
         <Button color='secondary' variant='contained' value='all' onClick={(event) => handleIsPlaying(event.target.value)}>Coverall</Button>
         <Button color='secondary' variant='contained' value='madam' onClick={(event) => handleIsPlaying(event.target.value)}>Madam X</Button>
@@ -81,85 +81,85 @@ function App() {
         <Button color='secondary' variant='contained' value='letterL' onClick={(event) => handleIsPlaying(event.target.value)}>Letter L</Button>
       </Box>
       {isPlaying === true && gamePlayed !== "postage" ?
-      <Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
-          <img height='237vw' width='237vw' src={image} alt='bingo success example' />
-          <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw'}}>{selectedNumber}</Card>
-          <img height='237vw' width='237vw' src={gamePlayed === 'bingo' ? image2 : image} alt='bingo success example' />
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>B</Typography>
-          {bNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2.2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>I</Typography>
-          {iNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>N</Typography>
-          {nNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>G</Typography>
-          {gNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>O</Typography>
-          {oNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center'>
-          <Button color='secondary' disabled={availableNumbers.length === 0 ? true : false} variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
-          <Button color='secondary' variant='contained' onClick={() => handleGameOver()}>Game Over</Button>
-        </Box>
-      </Box> : isPlaying === true && gamePlayed === 'postage' ?
-      <Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
-          <img height='237vw' width='237vw' src={image} alt='bingo success example' />
-          <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw'}}>{selectedNumber}</Card>
-          <img height='237vw' width='237vw' src={image} alt='bingo success example' />
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>G</Typography>
-          {gNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
-          <Typography fontSize='2vw' fontWeight='bold'>O</Typography>
-          {oNumbers.map(number => (
-            <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple'}}>
-              {number}
-            </Card>
-          ))}
-        </Box>
-        <Box gap={2} display='flex' justifyContent='center'>
-          <Button color='secondary' disabled={availableNumbers.length === 0 ? true : false} variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
-          <Button color='secondary' variant='contained' onClick={() => handleGameOver()}>Game Over</Button>
-        </Box>
-      </Box> :
-      <></> }
+        <Box>
+          <Box gap={2} display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
+            <img height='237vw' width='237vw' src={image} alt='bingo success example' />
+            <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw' }}>{selectedNumber < 16 ? 'B ' + selectedNumber : selectedNumber >= 16 && selectedNumber < 31 ? 'I ' + selectedNumber : selectedNumber >= 31 && selectedNumber < 46 ? 'N ' + selectedNumber : selectedNumber >= 46 && selectedNumber < 61 ? 'G ' + selectedNumber : selectedNumber >= 61 ? 'O ' + selectedNumber : selectedNumber}</Card>
+            <img height='237vw' width='237vw' src={gamePlayed === 'bingo' ? image2 : image} alt='bingo success example' />
+          </Box>
+          <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+            <Typography fontSize='2vw' fontWeight='bold'>B</Typography>
+            {bNumbers.map(number => (
+              <Card sx={{ minHeight: '2vw', minWidth: '2.2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                {number}
+              </Card>
+            ))}
+          </Box>
+          <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+            <Typography fontSize='2vw' fontWeight='bold'>I</Typography>
+            {iNumbers.map(number => (
+              <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                {number}
+              </Card>
+            ))}
+          </Box>
+          <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+            <Typography fontSize='2vw' fontWeight='bold'>N</Typography>
+            {nNumbers.map(number => (
+              <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                {number}
+              </Card>
+            ))}
+          </Box>
+          <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+            <Typography fontSize='2vw' fontWeight='bold'>G</Typography>
+            {gNumbers.map(number => (
+              <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                {number}
+              </Card>
+            ))}
+          </Box>
+          <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+            <Typography fontSize='2vw' fontWeight='bold'>O</Typography>
+            {oNumbers.map(number => (
+              <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                {number}
+              </Card>
+            ))}
+          </Box>
+          <Box gap={2} display='flex' justifyContent='center'>
+            <Button color='secondary' disabled={availableNumbers.length === 0 ? true : false} variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
+            <Button color='secondary' variant='contained' onClick={() => handleGameOver()}>Game Over</Button>
+          </Box>
+        </Box> : isPlaying === true && gamePlayed === 'postage' ?
+          <Box>
+            <Box gap={2} display='flex' justifyContent='center' sx={{ minHeight: '15vw' }}>
+              <img height='237vw' width='237vw' src={image} alt='bingo success example' />
+              <Card sx={{ padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: 'purple', minWidth: '15vw', minHeight: '10vw', marginBottom: '20px', fontSize: '10vw' }}>{selectedNumber}</Card>
+              <img height='237vw' width='237vw' src={image} alt='bingo success example' />
+            </Box>
+            <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+              <Typography fontSize='2vw' fontWeight='bold'>G</Typography>
+              {gNumbers.map(number => (
+                <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                  {number}
+                </Card>
+              ))}
+            </Box>
+            <Box gap={2} display='flex' justifyContent='center' sx={{ marginBottom: '20px' }}>
+              <Typography fontSize='2vw' fontWeight='bold'>O</Typography>
+              {oNumbers.map(number => (
+                <Card sx={{ minHeight: '2vw', minWidth: '2vw', fontSize: '2vw', padding: '5px', fontWeight: 'bold', backgroundColor: 'gray', color: usedNumbers.includes(number) ? 'red' : 'purple' }}>
+                  {number}
+                </Card>
+              ))}
+            </Box>
+            <Box gap={2} display='flex' justifyContent='center'>
+              <Button color='secondary' disabled={availableNumbers.length === 0 ? true : false} variant='contained' onClick={() => handleSelectANumber()}>Select Number</Button>
+              <Button color='secondary' variant='contained' onClick={() => handleGameOver()}>Game Over</Button>
+            </Box>
+          </Box> :
+          <></>}
     </div>
   );
 }
